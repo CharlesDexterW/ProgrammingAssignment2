@@ -53,7 +53,7 @@ cacheSolve <- function(x, ...){
 
 ##=============================================================================
 ## inverse matrix must be square, also it won't work if it's singular.
-##Example: 
+## One Example: 
 ## example <- makeCacheMatrix(matrix(1:4, nrow = 2, ncol = 2))
 ## example$get()
 ## cacheSolve(example)
