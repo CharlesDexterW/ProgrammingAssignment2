@@ -2,7 +2,7 @@
 ## functions do
 
 ## Write a short comment describing this function
-## NULL objects are assigned to "inv" variable. 
+## NULL objects are assigned to "wink" variable. 
 ## the matrix's value is  set on "set" function.
 ## y is assigned to x through "<<-" in order to modify the upper level's variables
 ## through lower level's variables.
@@ -11,33 +11,49 @@
 ## "getInverse" function returns the reverse matrix from x
 
 makeCacheMatrix <- function(x = matrix()){
-  inv <- NULL
+  wink <- NULL
   set <- function(y){
-    x <<- y
-    inv <<- NULL
+      x <<- y
+      wink <<- NULL
   }
-  get <- function() {x}
-  setInverse <- function(inverse) {inv <<- inverse}
-  getInverse <- function() {inv}
-  list(set = set, get =get, setInverse = setInverse, getInverse = getInverse)
+  get <- function() {
+    x
+    }
+  setInverse <- function(inverse) {
+    wink <<- inverse
+    }
+  getInverse <- function() {
+    wink
+    }
+  list(set = set, 
+       get =get, 
+       setInverse = setInverse, 
+       getInverse = getInverse)
 }
 
 
-## Write a short comment describing this function
-## Inverse matrix's vallue is assigned to "inv" variable
+## Function Description
+## Inverse matrix's vallue is assigned to "wink" variable
 ## The "if" & "mat" functions will return the inverse matrix's value if already 
-## computed. Else it will compute its value through the "inv <- solve(mat, ...)"
+## computed. Else it will compute its value through the "wink <- solve(dat, ...)"
 ## line. "x$setInverse(inv)" line will assign the calculated reverse matrix's 
-## value and return it through "inv" on the next line.
-## inverse matrix must be square, also it won't work if it's singular. 
+## value and return it through "wink" on the next line.
+ 
 cacheSolve <- function(x, ...){
-  inv <- x$getInverse()
-  if(!is.null(inv)){
+  wink <- x$getInverse()
+  if(!is.null(wink)){
     message("getting cached data")
-    return(inv)
+    return(wink)
   }
-  mat <- x$get()
-  inv <- solve(mat, ...)
-  x$setInverse(inv)
-  inv
+  dat <- x$get()
+  wink <- solve(dat, ...)
+  x$setInverse(wink)
+  wink
 }
+
+##=============================================================================
+## inverse matrix must be square, also it won't work if it's singular.
+##Example: 
+## example <- makeCacheMatrix(matrix(1:4, nrow = 2, ncol = 2))
+## example$get()
+## cacheSolve(example)
